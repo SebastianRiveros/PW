@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Codigo para estudiantes desde Django</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <h1>Este es un texto base</h1>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h1>{{nombre}}</h1>
+    <h2>
+        {% if edad > 40 %}
+        debe cuidarse del colesterol
+        {% else %}
+        puede comer lo que quiera
+        {% endif %}
+    </h2>
+    {% endblock %}
+</body>
+</html>
