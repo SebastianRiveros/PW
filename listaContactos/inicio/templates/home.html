@@ -12,21 +12,38 @@
     {{ request.user }}
     <br>
     <p>
-        {{myText}}
-        {{myNumber}}
+        {{ myText }}
+        {{ myNumber }}
     </p>
     <ul>
         {% for myItem in myList %}
-            <li>{{forloop.counter}} - {{ myItem }}
-            {% if myItem == 33 %}
-                - Este numero es magico
-            {% elif myItem > 50 %}
-                - Este numero es mayor que 50
-            {% endif %}
+            <li>
+                {{ forloop.counter }} - {{ myItem }}
+                {% if myItem == 33 %}
+                    - Este numero es magico
+                {% elif myItem > 50 %}
+                    - Este numero es mayor que 50
+                {% else %}
+                    - Este numero no es especial
+                {% endif %}
+                {% if forloop.first %}
+                    - Este es el primer elemento
+                {% endif %}
+                {% if forloop.last %}
+                    - Este es el último elemento
+                {% endif %}
+                {% if forloop.counter0 == 1 %}
+                    - Segundo elemento (usando counter0)
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
-    {{ request.user.is_authenticated }}
+    <br>
+    {% if request.user.is_authenticated %}
+        <p>Bienvenido, {{ request.user.username }}!</p>
+    {% else %}
+        <p>Por favor, inicia sesión para continuar.</p>
+    {% endif %}
     {% endblock %}
 </body>
 </html>
